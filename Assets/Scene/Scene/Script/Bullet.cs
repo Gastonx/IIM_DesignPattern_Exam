@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] float _speed;
     [SerializeField] float _collisionCooldown = 0.5f;
+
+    public UnityEvent Particle;
+
+   
 
     public Vector3 Direction { get; private set; }
     public int Power { get; private set; }
@@ -34,16 +39,35 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Particle.Invoke();
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
+        var health = collision.GetComponent<IHealth>(); 
+        var touch = collision.GetComponent<ITouchable>(); 
+        if (health != null)
+        {
+            collision.GetComponent<IHealth>()?.TakeDamage(Power);
+        }
+        else if(touch != null)
+        {
+            collision.GetComponent<ITouchable>()?.Touch(Power);
+        }
 
-        collision.GetComponent<IHealth>()?.TakeDamage(Power);
+
         Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
-
-        collision.collider.GetComponent<IHealth>()?.TakeDamage(Power);
+        Particle.Invoke();
+        var health = collision.collider.GetComponent<IHealth>();
+        var touch = collision.collider.GetComponent<ITouchable>();
+        if (health != null)
+        {
+            collision.collider.GetComponent<IHealth>()?.TakeDamage(Power);
+        }
+        else if (touch != null)
+        {
+            collision.collider.GetComponent<ITouchable>()?.Touch(Power);
+        }
         Destroy(gameObject);
     }
 

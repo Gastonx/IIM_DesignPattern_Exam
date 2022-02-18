@@ -120,9 +120,11 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _movement: {fileID: 4880755393553903839}
   _fire: {fileID: 4282943184299706631}
+  _shield: {fileID: 0}
   _pointerPosition: {fileID: -783169567023109517, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
   _moveJoystick: {fileID: 1202087846194337127, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
   _fireButton: {fileID: 1288914843486402132, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
+  _shieldButton: {fileID: 0}
 --- !u!1 &2718515491814373226
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8718385489110254335}
   - component: {fileID: 3916804375536699047}
+  - component: {fileID: 2160917747175654583}
   m_Layer: 0
   m_Name: ObjectTrigger
   m_TagString: Untagged
@@ -417,6 +420,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9410648, y: 2.2955625}
   m_EdgeRadius: 0
+--- !u!114 &2160917747175654583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656551847328665815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fe01320af3e4eb61553a0a9bfca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Heal:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1657962468365373699}
+        m_TargetAssemblyTypeName: Health, MyGame
+        m_MethodName: Heal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OpenGate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4719610752975132196
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +626,7 @@ GameObject:
   - component: {fileID: 4880755393553903839}
   - component: {fileID: 4282943184299706631}
   - component: {fileID: 2103652747003793891}
+  - component: {fileID: 7732545919930500570}
   m_Layer: 0
   m_Name: CharacterAbilities
   m_TagString: Untagged
@@ -657,6 +691,19 @@ MonoBehaviour:
   _cursorRef: {fileID: 11400000, guid: 9197bcf8a4454f344881ea88995e5930, type: 2}
   _player: {fileID: 4509255931906459442}
   _sprite: {fileID: 2950811546776138143}
+--- !u!114 &7732545919930500570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361803221221579786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9937c8860fa2e45b965a3d15597944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsShield: 0
 --- !u!1 &7144573470162700296
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,5 +916,23 @@ MonoBehaviour:
   _startHealth: 10
   _maxHealth: 10
   _onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ReloadScene, MyGame
+        m_MethodName: reloadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game
+          m_BoolArgument: 0
+        m_CallState: 2
+  _shield: {fileID: 0}
+  HealthBar: {fileID: 0}
+  entityName: Player
+  CameraShake:
     m_PersistentCalls:
       m_Calls: []

@@ -9,7 +9,7 @@ public class HealthProxy : MonoBehaviour, IHealth
     [SerializeField] Health _health;
 
     public int CurrentHealth => _health.CurrentHealth;
-
+    public string EntityName { get; }
     public int MaxHealth => _health.MaxHealth;
 
     public bool IsDead => _health.IsDead;

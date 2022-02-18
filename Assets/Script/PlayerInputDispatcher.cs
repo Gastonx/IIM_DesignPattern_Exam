@@ -10,10 +10,12 @@ public class PlayerInputDispatcher : MonoBehaviour
 
     [SerializeField] EntityMovement _movement;
     [SerializeField] EntityFire _fire;
+    [SerializeField] EntityShield _shield;
 
     [SerializeField] InputActionReference _pointerPosition;
     [SerializeField] InputActionReference _moveJoystick;
     [SerializeField] InputActionReference _fireButton;
+    [SerializeField] InputActionReference _shieldButton;
 
     Coroutine MovementTracking { get; set; }
 
@@ -26,6 +28,9 @@ public class PlayerInputDispatcher : MonoBehaviour
 
         _moveJoystick.action.started += MoveInput;
         _moveJoystick.action.canceled += MoveInputCancel;
+
+        _shieldButton.action.started += ShieldInput;
+        _shieldButton.action.canceled += ShieldCancel;
     }
 
     private void OnDestroy()
@@ -62,11 +67,32 @@ public class PlayerInputDispatcher : MonoBehaviour
 
     private void FireInput(InputAction.CallbackContext obj)
     {
-        float fire = obj.ReadValue<float>();
-        if(fire==1)
+        if (_shield.IsShield == false) //verifié que le bouclier est activé
         {
-            _fire.FireBullet(2);
+            float fire = obj.ReadValue<float>();
+            if (fire == 1)
+            {
+                _fire.FireBullet(2);
+            }
         }
+        
+    }
+
+    private void ShieldInput(InputAction.CallbackContext obj) //activation du bouclié avec le clic droit
+    {
+        float shield = obj.ReadValue<float>();
+        if (shield == 1)
+        {
+            _shield.IsShield = true;
+        }
+      
+    
+    }  
+
+    private void ShieldCancel(InputAction.CallbackContext obj) //désactivation du bouclier quand on lache le clic droit
+    {
+
+        _shield.IsShield = false;
     }
 
 }

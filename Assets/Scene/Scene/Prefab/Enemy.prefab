@@ -46,6 +46,7 @@ MonoBehaviour:
   _fire: {fileID: 4645590585023127803}
   _playerTarget: {fileID: 0}
   _detectionRadius: 7
+  _drawGizmo: 0
 --- !u!1 &1855186171643597931
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +433,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _shield: {fileID: 0}
+  HealthBar: {fileID: 0}
+  entityName: Enemy
 --- !u!1 &6019756107402616924
 GameObject:
   m_ObjectHideFlags: 0

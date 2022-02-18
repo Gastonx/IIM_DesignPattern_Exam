@@ -3,14 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour, IHealth
 {
     // Champs
     [SerializeField] int _startHealth;
     [SerializeField] int _maxHealth;
+    
     [SerializeField] UnityEvent _onDeath;
+    [SerializeField] EntityShield _shield;
+    public string EntityName { get => entityName ; }
+    public Slider HealthBar;
+
+    public string entityName;
 
     // Propriétés
     public int CurrentHealth { get; private set; }
@@ -21,6 +29,7 @@ public class Health : MonoBehaviour, IHealth
     public event UnityAction OnSpawn;
     public event UnityAction<int> OnDamage;
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
+    public UnityEvent CameraShake;
 
     // Methods
     void Awake() => Init();
@@ -31,21 +40,52 @@ public class Health : MonoBehaviour, IHealth
         OnSpawn?.Invoke();
     }
 
+    
+
     public void TakeDamage(int amount)
     {
-        if (amount < 0) throw new ArgumentException($"Argument amount {nameof(amount)} is negativ");
+        if (_shield == null || _shield.IsShield == false) 
+        {
+            if (amount < 0) throw new ArgumentException($"Argument amount {nameof(amount)} is negativ");
 
-        var tmp = CurrentHealth;
-        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
-        var delta = CurrentHealth - tmp;
-        OnDamage?.Invoke(delta);
+            var tmp = CurrentHealth;
+            CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+            var delta = CurrentHealth - tmp;
+            OnDamage?.Invoke(delta);
+            if (entityName == "Player")
+            {
+                UpdateLife();//mise a jour de la barre de vie
+                CameraShake?.Invoke(); // ScreenShake
+            }
+             
 
-        if(CurrentHealth <= 0)
+            
+        }
+        if (CurrentHealth <= 0)
         {
             _onDeath?.Invoke();
         }
 
     }
+
+    private void UpdateLife()
+    {
+        HealthBar.value = (float)CurrentHealth / 10;
+    }
+    public void Heal() 
+    {
+        if (CurrentHealth < _maxHealth )
+        {
+            CurrentHealth++;
+            if (entityName == "Player")
+            {
+                UpdateLife();//mise a jour de la barre de vie
+            }
+        }
+    
+    }
+
+    
 
     [Button("test")]
     void MaFonction()
