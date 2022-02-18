@@ -30,6 +30,7 @@ public class Health : MonoBehaviour, IHealth
     public event UnityAction<int> OnDamage;
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
     public UnityEvent CameraShake;
+    
 
     // Methods
     void Awake() => Init();
@@ -56,6 +57,7 @@ public class Health : MonoBehaviour, IHealth
             {
                 UpdateLife();//mise a jour de la barre de vie
                 CameraShake?.Invoke(); // ScreenShake
+                
             }
              
 

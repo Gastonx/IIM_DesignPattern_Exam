@@ -12,6 +12,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] float _collisionCooldown = 0.5f;
 
     public UnityEvent Particle;
+    public UnityEvent Sfx;
+    
 
    
 
@@ -24,6 +26,7 @@ public class Bullet : MonoBehaviour
         Direction = vector3;
         Power = power;
         LaunchTime = Time.fixedTime;
+        Sfx.Invoke();
         return this;
     }
 
@@ -39,33 +42,37 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Particle.Invoke();
+       
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
         var health = collision.GetComponent<IHealth>(); 
         var touch = collision.GetComponent<ITouchable>(); 
         if (health != null)
         {
+            
             collision.GetComponent<IHealth>()?.TakeDamage(Power);
         }
         else if(touch != null)
         {
+            StartCoroutine(SFX());
             collision.GetComponent<ITouchable>()?.Touch(Power);
         }
 
-
         Destroy(gameObject);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Particle.Invoke();
+        
         var health = collision.collider.GetComponent<IHealth>();
         var touch = collision.collider.GetComponent<ITouchable>();
         if (health != null)
         {
+            
             collision.collider.GetComponent<IHealth>()?.TakeDamage(Power);
         }
         else if (touch != null)
         {
+            StartCoroutine(SFX());
             collision.collider.GetComponent<ITouchable>()?.Touch(Power);
         }
         Destroy(gameObject);
@@ -74,5 +81,16 @@ public class Bullet : MonoBehaviour
     private void Health_OnDamage(int arg0)
     {
         throw new NotImplementedException();
+    }
+
+    IEnumerator SFX() 
+    {
+        Particle?.Invoke();
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        yield break;
+
+    
     }
 }
