@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
 
     public UnityEvent Particle;
     public UnityEvent Sfx;
+    public GameObject SfxPrefab;
     
 
    
@@ -56,6 +57,7 @@ public class Bullet : MonoBehaviour
             StartCoroutine(SFX());
             collision.GetComponent<ITouchable>()?.Touch(Power);
         }
+         Instantiate(SfxPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + 1000)  , Quaternion.identity);
 
         Destroy(gameObject);
 
@@ -75,6 +77,7 @@ public class Bullet : MonoBehaviour
             StartCoroutine(SFX());
             collision.collider.GetComponent<ITouchable>()?.Touch(Power);
         }
+        Instantiate(SfxPrefab, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

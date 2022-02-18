@@ -32,7 +32,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3323693375079350732}
-  - {fileID: 7578513450135851988}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54,18 +53,6 @@ MonoBehaviour:
   Particle:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4831737013494245621}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 6541709161328057552}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -93,6 +80,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  SfxPrefab: {fileID: 6895792563937559886, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
 --- !u!61 &721766070828420108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -318,82 +306,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &2743225033086144441
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 453092437735797873}
-    m_Modifications:
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.242
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895792563937559886, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_Name
-      value: dust
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895792563937559886, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285737419857553228, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285737419857553228, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
---- !u!4 &7578513450135851988 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5709910627792788589, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-  m_PrefabInstance: {fileID: 2743225033086144441}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4831737013494245621 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7285737419857553228, guid: 685be2f51384a4a419348f1bdff587fe, type: 3}
-  m_PrefabInstance: {fileID: 2743225033086144441}
-  m_PrefabAsset: {fileID: 0}
